@@ -9,12 +9,10 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ApiLogMessage {
-    POST_INFO_BY_ID("Receiving post with id: %S"),
+    POST_INFO_BY_ID("Receiving post with id: {}"),
+    NAME_OF_CURRENT_METHOD("Current method: {}"),
             ;
 
-    private final String message;
+    private final String value;
 
-    public String getMessage(Object... args) {
-        return String.format(message, args);
-    }
 }
