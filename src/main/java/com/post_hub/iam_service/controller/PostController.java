@@ -32,16 +32,20 @@ public class PostController {
             @PathVariable(name = "id") Integer postId) {
         log.trace(ApiLogMessage.NAME_OF_CURRENT_METHOD.getValue(), ApiUtils.getMethodName());
 
+
        IamResponse<PostDTO> response = postService.getById(postId);
        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/create")
     public ResponseEntity<IamResponse<PostDTO>> createPost(
-            @RequestBody @Valid NewPostRequest newPostRequest) {
+            @RequestBody @Valid NewPostRequest request) {
         log.trace(ApiLogMessage.NAME_OF_CURRENT_METHOD.getValue(), ApiUtils.getMethodName());
 
-        IamResponse<PostDTO> response = postService.createPost(newPostRequest);
+        //TODO: replace 1 with the real user_id
+        int userId = 1;
+
+        IamResponse<PostDTO> response = postService.createPost(userId, request);
         return ResponseEntity.ok(response);
     }
     @PutMapping("/{id}")
